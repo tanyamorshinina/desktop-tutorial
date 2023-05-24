@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="083dafaf981e4069a5e5ac62fcfbb93f" Name="Diagram1">
+        <EntityTypeShape EntityType="Musical_magazinModel.Doljnosti" Width="1.5" PointX="1.5" PointY="11.125" />
+        <EntityTypeShape EntityType="Musical_magazinModel.Korzina" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="Musical_magazinModel.Korzina_pokupateley" Width="1.5" PointX="3" PointY="4" />
+        <EntityTypeShape EntityType="Musical_magazinModel.Pokupateli" Width="1.5" PointX="0.75" PointY="3.5" />
+        <EntityTypeShape EntityType="Musical_magazinModel.Pridaji" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="Musical_magazinModel.Sotrudniki" Width="1.5" PointX="0.75" PointY="7.5" />
+        <EntityTypeShape EntityType="Musical_magazinModel.sysdiagram" Width="1.5" PointX="5.75" PointY="4" />
+        <EntityTypeShape EntityType="Musical_magazinModel.Tovari" Width="1.5" PointX="3" PointY="7" />
+        <AssociationConnector Association="Musical_magazinModel.FK_Sotrudniki_Doljnosti" />
+        <AssociationConnector Association="Musical_magazinModel.FK_Korzina_Pridaji" />
+        <AssociationConnector Association="Musical_magazinModel.FK_Korzina_Tovari" />
+        <AssociationConnector Association="Musical_magazinModel.FK_Korzina_pokupateley_Pokupateli" />
+        <AssociationConnector Association="Musical_magazinModel.FK_Korzina_pokupateley_Tovari" />
+        <AssociationConnector Association="Musical_magazinModel.FK_Pridaji_Pokupateli" />
+        <AssociationConnector Association="Musical_magazinModel.FK_Pridaji_Sotrudniki" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
