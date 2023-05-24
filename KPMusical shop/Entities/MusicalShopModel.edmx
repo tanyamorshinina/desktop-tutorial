@@ -1,0 +1,553 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище Musical_magazinModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Doljnosti">
+          <Key>
+            <PropertyRef Name="id_dioljnosti" />
+          </Key>
+          <Property Name="id_dioljnosti" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="doljnost" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Korzina">
+          <Key>
+            <PropertyRef Name="id_prodaji" />
+            <PropertyRef Name="date" />
+            <PropertyRef Name="id_tovara" />
+          </Key>
+          <Property Name="id_prodaji" Type="int" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="id_tovara" Type="int" Nullable="false" />
+          <Property Name="kolichestvo" Type="int" />
+        </EntityType>
+        <EntityType Name="Korzina_pokupateley">
+          <Key>
+            <PropertyRef Name="id_pokupatelya" />
+            <PropertyRef Name="id_tovara" />
+          </Key>
+          <Property Name="id_pokupatelya" Type="int" Nullable="false" />
+          <Property Name="id_tovara" Type="int" Nullable="false" />
+          <Property Name="kolichestvo" Type="int" />
+        </EntityType>
+        <EntityType Name="Pokupateli">
+          <Key>
+            <PropertyRef Name="id_pokupatelya" />
+          </Key>
+          <Property Name="id_pokupatelya" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="familiya" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="otchestvo" Type="nvarchar" MaxLength="50" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="telefon" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Pridaji">
+          <Key>
+            <PropertyRef Name="id_prodaji" />
+            <PropertyRef Name="date" />
+          </Key>
+          <Property Name="id_prodaji" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="stoimost" Type="int" />
+          <Property Name="id_sotrudnika" Type="int" />
+          <Property Name="id_clienta" Type="int" />
+        </EntityType>
+        <EntityType Name="Sotrudniki">
+          <Key>
+            <PropertyRef Name="id_sotrudnika" />
+          </Key>
+          <Property Name="id_sotrudnika" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="familiya" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="otchestvo" Type="nvarchar" MaxLength="50" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_doljnosti" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tovari">
+          <Key>
+            <PropertyRef Name="id_tovara" />
+          </Key>
+          <Property Name="id_tovara" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="zena" Type="int" />
+          <Property Name="image" Type="image" />
+        </EntityType>
+        <Association Name="FK_Korzina_pokupateley_Pokupateli">
+          <End Role="Pokupateli" Type="Self.Pokupateli" Multiplicity="1" />
+          <End Role="Korzina_pokupateley" Type="Self.Korzina_pokupateley" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pokupateli">
+              <PropertyRef Name="id_pokupatelya" />
+            </Principal>
+            <Dependent Role="Korzina_pokupateley">
+              <PropertyRef Name="id_pokupatelya" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Korzina_pokupateley_Tovari">
+          <End Role="Tovari" Type="Self.Tovari" Multiplicity="1" />
+          <End Role="Korzina_pokupateley" Type="Self.Korzina_pokupateley" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tovari">
+              <PropertyRef Name="id_tovara" />
+            </Principal>
+            <Dependent Role="Korzina_pokupateley">
+              <PropertyRef Name="id_tovara" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Korzina_Pridaji">
+          <End Role="Pridaji" Type="Self.Pridaji" Multiplicity="1" />
+          <End Role="Korzina" Type="Self.Korzina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pridaji">
+              <PropertyRef Name="id_prodaji" />
+              <PropertyRef Name="date" />
+            </Principal>
+            <Dependent Role="Korzina">
+              <PropertyRef Name="id_prodaji" />
+              <PropertyRef Name="date" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Korzina_Tovari">
+          <End Role="Tovari" Type="Self.Tovari" Multiplicity="1" />
+          <End Role="Korzina" Type="Self.Korzina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tovari">
+              <PropertyRef Name="id_tovara" />
+            </Principal>
+            <Dependent Role="Korzina">
+              <PropertyRef Name="id_tovara" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pridaji_Pokupateli">
+          <End Role="Pokupateli" Type="Self.Pokupateli" Multiplicity="0..1" />
+          <End Role="Pridaji" Type="Self.Pridaji" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pokupateli">
+              <PropertyRef Name="id_pokupatelya" />
+            </Principal>
+            <Dependent Role="Pridaji">
+              <PropertyRef Name="id_clienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pridaji_Sotrudniki">
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="0..1" />
+          <End Role="Pridaji" Type="Self.Pridaji" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudniki">
+              <PropertyRef Name="id_sotrudnika" />
+            </Principal>
+            <Dependent Role="Pridaji">
+              <PropertyRef Name="id_sotrudnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sotrudniki_Doljnosti">
+          <End Role="Doljnosti" Type="Self.Doljnosti" Multiplicity="1" />
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doljnosti">
+              <PropertyRef Name="id_dioljnosti" />
+            </Principal>
+            <Dependent Role="Sotrudniki">
+              <PropertyRef Name="id_doljnosti" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Musical_magazinModelContainer">
+          <EntitySet Name="Doljnosti" EntityType="Self.Doljnosti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Korzina" EntityType="Self.Korzina" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Korzina_pokupateley" EntityType="Self.Korzina_pokupateley" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pokupateli" EntityType="Self.Pokupateli" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pridaji" EntityType="Self.Pridaji" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sotrudniki" EntityType="Self.Sotrudniki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tovari" EntityType="Self.Tovari" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Korzina_pokupateley_Pokupateli" Association="Self.FK_Korzina_pokupateley_Pokupateli">
+            <End Role="Pokupateli" EntitySet="Pokupateli" />
+            <End Role="Korzina_pokupateley" EntitySet="Korzina_pokupateley" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Korzina_pokupateley_Tovari" Association="Self.FK_Korzina_pokupateley_Tovari">
+            <End Role="Tovari" EntitySet="Tovari" />
+            <End Role="Korzina_pokupateley" EntitySet="Korzina_pokupateley" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Korzina_Pridaji" Association="Self.FK_Korzina_Pridaji">
+            <End Role="Pridaji" EntitySet="Pridaji" />
+            <End Role="Korzina" EntitySet="Korzina" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Korzina_Tovari" Association="Self.FK_Korzina_Tovari">
+            <End Role="Tovari" EntitySet="Tovari" />
+            <End Role="Korzina" EntitySet="Korzina" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pridaji_Pokupateli" Association="Self.FK_Pridaji_Pokupateli">
+            <End Role="Pokupateli" EntitySet="Pokupateli" />
+            <End Role="Pridaji" EntitySet="Pridaji" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pridaji_Sotrudniki" Association="Self.FK_Pridaji_Sotrudniki">
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+            <End Role="Pridaji" EntitySet="Pridaji" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sotrudniki_Doljnosti" Association="Self.FK_Sotrudniki_Doljnosti">
+            <End Role="Doljnosti" EntitySet="Doljnosti" />
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Musical_magazinModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Musical_magazinEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Doljnostis" EntityType="Musical_magazinModel.Doljnosti" />
+          <EntitySet Name="Korzinas" EntityType="Musical_magazinModel.Korzina" />
+          <EntitySet Name="Korzina_pokupateley" EntityType="Musical_magazinModel.Korzina_pokupateley" />
+          <EntitySet Name="Pokupatelis" EntityType="Musical_magazinModel.Pokupateli" />
+          <EntitySet Name="Pridajis" EntityType="Musical_magazinModel.Pridaji" />
+          <EntitySet Name="Sotrudnikis" EntityType="Musical_magazinModel.Sotrudniki" />
+          <EntitySet Name="sysdiagrams" EntityType="Musical_magazinModel.sysdiagram" />
+          <EntitySet Name="Tovaris" EntityType="Musical_magazinModel.Tovari" />
+          <AssociationSet Name="FK_Sotrudniki_Doljnosti" Association="Musical_magazinModel.FK_Sotrudniki_Doljnosti">
+            <End Role="Doljnosti" EntitySet="Doljnostis" />
+            <End Role="Sotrudniki" EntitySet="Sotrudnikis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Korzina_Pridaji" Association="Musical_magazinModel.FK_Korzina_Pridaji">
+            <End Role="Pridaji" EntitySet="Pridajis" />
+            <End Role="Korzina" EntitySet="Korzinas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Korzina_Tovari" Association="Musical_magazinModel.FK_Korzina_Tovari">
+            <End Role="Tovari" EntitySet="Tovaris" />
+            <End Role="Korzina" EntitySet="Korzinas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Korzina_pokupateley_Pokupateli" Association="Musical_magazinModel.FK_Korzina_pokupateley_Pokupateli">
+            <End Role="Pokupateli" EntitySet="Pokupatelis" />
+            <End Role="Korzina_pokupateley" EntitySet="Korzina_pokupateley" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Korzina_pokupateley_Tovari" Association="Musical_magazinModel.FK_Korzina_pokupateley_Tovari">
+            <End Role="Tovari" EntitySet="Tovaris" />
+            <End Role="Korzina_pokupateley" EntitySet="Korzina_pokupateley" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pridaji_Pokupateli" Association="Musical_magazinModel.FK_Pridaji_Pokupateli">
+            <End Role="Pokupateli" EntitySet="Pokupatelis" />
+            <End Role="Pridaji" EntitySet="Pridajis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pridaji_Sotrudniki" Association="Musical_magazinModel.FK_Pridaji_Sotrudniki">
+            <End Role="Sotrudniki" EntitySet="Sotrudnikis" />
+            <End Role="Pridaji" EntitySet="Pridajis" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Doljnosti">
+          <Key>
+            <PropertyRef Name="id_dioljnosti" />
+          </Key>
+          <Property Name="id_dioljnosti" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="doljnost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sotrudnikis" Relationship="Musical_magazinModel.FK_Sotrudniki_Doljnosti" FromRole="Doljnosti" ToRole="Sotrudniki" />
+        </EntityType>
+        <EntityType Name="Korzina">
+          <Key>
+            <PropertyRef Name="id_prodaji" />
+            <PropertyRef Name="date" />
+            <PropertyRef Name="id_tovara" />
+          </Key>
+          <Property Name="id_prodaji" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id_tovara" Type="Int32" Nullable="false" />
+          <Property Name="kolichestvo" Type="Int32" />
+          <NavigationProperty Name="Pridaji" Relationship="Musical_magazinModel.FK_Korzina_Pridaji" FromRole="Korzina" ToRole="Pridaji" />
+          <NavigationProperty Name="Tovari" Relationship="Musical_magazinModel.FK_Korzina_Tovari" FromRole="Korzina" ToRole="Tovari" />
+        </EntityType>
+        <EntityType Name="Korzina_pokupateley">
+          <Key>
+            <PropertyRef Name="id_pokupatelya" />
+            <PropertyRef Name="id_tovara" />
+          </Key>
+          <Property Name="id_pokupatelya" Type="Int32" Nullable="false" />
+          <Property Name="id_tovara" Type="Int32" Nullable="false" />
+          <Property Name="kolichestvo" Type="Int32" />
+          <NavigationProperty Name="Pokupateli" Relationship="Musical_magazinModel.FK_Korzina_pokupateley_Pokupateli" FromRole="Korzina_pokupateley" ToRole="Pokupateli" />
+          <NavigationProperty Name="Tovari" Relationship="Musical_magazinModel.FK_Korzina_pokupateley_Tovari" FromRole="Korzina_pokupateley" ToRole="Tovari" />
+        </EntityType>
+        <EntityType Name="Pokupateli">
+          <Key>
+            <PropertyRef Name="id_pokupatelya" />
+          </Key>
+          <Property Name="id_pokupatelya" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="familiya" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="otchestvo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="telefon" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Korzina_pokupateley" Relationship="Musical_magazinModel.FK_Korzina_pokupateley_Pokupateli" FromRole="Pokupateli" ToRole="Korzina_pokupateley" />
+          <NavigationProperty Name="Pridajis" Relationship="Musical_magazinModel.FK_Pridaji_Pokupateli" FromRole="Pokupateli" ToRole="Pridaji" />
+        </EntityType>
+        <EntityType Name="Pridaji">
+          <Key>
+            <PropertyRef Name="id_prodaji" />
+            <PropertyRef Name="date" />
+          </Key>
+          <Property Name="id_prodaji" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="stoimost" Type="Int32" />
+          <Property Name="id_sotrudnika" Type="Int32" />
+          <Property Name="id_clienta" Type="Int32" />
+          <NavigationProperty Name="Korzinas" Relationship="Musical_magazinModel.FK_Korzina_Pridaji" FromRole="Pridaji" ToRole="Korzina" />
+          <NavigationProperty Name="Pokupateli" Relationship="Musical_magazinModel.FK_Pridaji_Pokupateli" FromRole="Pridaji" ToRole="Pokupateli" />
+          <NavigationProperty Name="Sotrudniki" Relationship="Musical_magazinModel.FK_Pridaji_Sotrudniki" FromRole="Pridaji" ToRole="Sotrudniki" />
+        </EntityType>
+        <EntityType Name="Sotrudniki">
+          <Key>
+            <PropertyRef Name="id_sotrudnika" />
+          </Key>
+          <Property Name="id_sotrudnika" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="familiya" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="otchestvo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_doljnosti" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Doljnosti" Relationship="Musical_magazinModel.FK_Sotrudniki_Doljnosti" FromRole="Sotrudniki" ToRole="Doljnosti" />
+          <NavigationProperty Name="Pridajis" Relationship="Musical_magazinModel.FK_Pridaji_Sotrudniki" FromRole="Sotrudniki" ToRole="Pridaji" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tovari">
+          <Key>
+            <PropertyRef Name="id_tovara" />
+          </Key>
+          <Property Name="id_tovara" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="zena" Type="Int32" />
+          <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Korzinas" Relationship="Musical_magazinModel.FK_Korzina_Tovari" FromRole="Tovari" ToRole="Korzina" />
+          <NavigationProperty Name="Korzina_pokupateley" Relationship="Musical_magazinModel.FK_Korzina_pokupateley_Tovari" FromRole="Tovari" ToRole="Korzina_pokupateley" />
+        </EntityType>
+        <Association Name="FK_Sotrudniki_Doljnosti">
+          <End Type="Musical_magazinModel.Doljnosti" Role="Doljnosti" Multiplicity="1" />
+          <End Type="Musical_magazinModel.Sotrudniki" Role="Sotrudniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doljnosti">
+              <PropertyRef Name="id_dioljnosti" />
+            </Principal>
+            <Dependent Role="Sotrudniki">
+              <PropertyRef Name="id_doljnosti" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Korzina_Pridaji">
+          <End Type="Musical_magazinModel.Pridaji" Role="Pridaji" Multiplicity="1" />
+          <End Type="Musical_magazinModel.Korzina" Role="Korzina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pridaji">
+              <PropertyRef Name="id_prodaji" />
+              <PropertyRef Name="date" />
+            </Principal>
+            <Dependent Role="Korzina">
+              <PropertyRef Name="id_prodaji" />
+              <PropertyRef Name="date" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Korzina_Tovari">
+          <End Type="Musical_magazinModel.Tovari" Role="Tovari" Multiplicity="1" />
+          <End Type="Musical_magazinModel.Korzina" Role="Korzina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tovari">
+              <PropertyRef Name="id_tovara" />
+            </Principal>
+            <Dependent Role="Korzina">
+              <PropertyRef Name="id_tovara" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Korzina_pokupateley_Pokupateli">
+          <End Type="Musical_magazinModel.Pokupateli" Role="Pokupateli" Multiplicity="1" />
+          <End Type="Musical_magazinModel.Korzina_pokupateley" Role="Korzina_pokupateley" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pokupateli">
+              <PropertyRef Name="id_pokupatelya" />
+            </Principal>
+            <Dependent Role="Korzina_pokupateley">
+              <PropertyRef Name="id_pokupatelya" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Korzina_pokupateley_Tovari">
+          <End Type="Musical_magazinModel.Tovari" Role="Tovari" Multiplicity="1" />
+          <End Type="Musical_magazinModel.Korzina_pokupateley" Role="Korzina_pokupateley" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tovari">
+              <PropertyRef Name="id_tovara" />
+            </Principal>
+            <Dependent Role="Korzina_pokupateley">
+              <PropertyRef Name="id_tovara" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pridaji_Pokupateli">
+          <End Type="Musical_magazinModel.Pokupateli" Role="Pokupateli" Multiplicity="0..1" />
+          <End Type="Musical_magazinModel.Pridaji" Role="Pridaji" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pokupateli">
+              <PropertyRef Name="id_pokupatelya" />
+            </Principal>
+            <Dependent Role="Pridaji">
+              <PropertyRef Name="id_clienta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pridaji_Sotrudniki">
+          <End Type="Musical_magazinModel.Sotrudniki" Role="Sotrudniki" Multiplicity="0..1" />
+          <End Type="Musical_magazinModel.Pridaji" Role="Pridaji" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudniki">
+              <PropertyRef Name="id_sotrudnika" />
+            </Principal>
+            <Dependent Role="Pridaji">
+              <PropertyRef Name="id_sotrudnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Musical_magazinModelContainer" CdmEntityContainer="Musical_magazinEntities">
+          <EntitySetMapping Name="Doljnostis">
+            <EntityTypeMapping TypeName="Musical_magazinModel.Doljnosti">
+              <MappingFragment StoreEntitySet="Doljnosti">
+                <ScalarProperty Name="doljnost" ColumnName="doljnost" />
+                <ScalarProperty Name="id_dioljnosti" ColumnName="id_dioljnosti" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Korzinas">
+            <EntityTypeMapping TypeName="Musical_magazinModel.Korzina">
+              <MappingFragment StoreEntitySet="Korzina">
+                <ScalarProperty Name="kolichestvo" ColumnName="kolichestvo" />
+                <ScalarProperty Name="id_tovara" ColumnName="id_tovara" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="id_prodaji" ColumnName="id_prodaji" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Korzina_pokupateley">
+            <EntityTypeMapping TypeName="Musical_magazinModel.Korzina_pokupateley">
+              <MappingFragment StoreEntitySet="Korzina_pokupateley">
+                <ScalarProperty Name="kolichestvo" ColumnName="kolichestvo" />
+                <ScalarProperty Name="id_tovara" ColumnName="id_tovara" />
+                <ScalarProperty Name="id_pokupatelya" ColumnName="id_pokupatelya" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pokupatelis">
+            <EntityTypeMapping TypeName="Musical_magazinModel.Pokupateli">
+              <MappingFragment StoreEntitySet="Pokupateli">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="otchestvo" ColumnName="otchestvo" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="familiya" ColumnName="familiya" />
+                <ScalarProperty Name="id_pokupatelya" ColumnName="id_pokupatelya" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pridajis">
+            <EntityTypeMapping TypeName="Musical_magazinModel.Pridaji">
+              <MappingFragment StoreEntitySet="Pridaji">
+                <ScalarProperty Name="id_clienta" ColumnName="id_clienta" />
+                <ScalarProperty Name="id_sotrudnika" ColumnName="id_sotrudnika" />
+                <ScalarProperty Name="stoimost" ColumnName="stoimost" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="id_prodaji" ColumnName="id_prodaji" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sotrudnikis">
+            <EntityTypeMapping TypeName="Musical_magazinModel.Sotrudniki">
+              <MappingFragment StoreEntitySet="Sotrudniki">
+                <ScalarProperty Name="id_doljnosti" ColumnName="id_doljnosti" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="otchestvo" ColumnName="otchestvo" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="familiya" ColumnName="familiya" />
+                <ScalarProperty Name="id_sotrudnika" ColumnName="id_sotrudnika" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Musical_magazinModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tovaris">
+            <EntityTypeMapping TypeName="Musical_magazinModel.Tovari">
+              <MappingFragment StoreEntitySet="Tovari">
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="zena" ColumnName="zena" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id_tovara" ColumnName="id_tovara" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
