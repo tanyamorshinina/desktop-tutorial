@@ -1,0 +1,36 @@
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\bin\Debug\KPMusical shop.exe.config
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\bin\Debug\KPMusical shop.exe
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\bin\Debug\KPMusical shop.pdb
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\bin\Debug\EntityFramework.dll
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\bin\Debug\EntityFramework.xml
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\KPMusical shop.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\KPMusical shop.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\MainWindow.g.cs
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\App.g.cs
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\KPMusical shop_Content.g.cs
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\KPMusical shop_MarkupCompile.cache
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\KPMusical shop_MarkupCompile.lref
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\App.baml
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\MainWindow.baml
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\KPMusical shop.g.resources
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\KPMusical_shop.Properties.Resources.resources
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\KPMusical shop.csproj.GenerateResource.cache
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\KPMusical shop.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\KPMusical shop.csproj.CopyComplete
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\KPMusical shop.exe
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\KPMusical shop.pdb
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\Pages\Autorisazia.g.cs
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\Pages\KorzinaPage.g.cs
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\Pages\ProfilePage.g.cs
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\Pages\RedDopPage.g.cs
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\Pages\Registrazia.g.cs
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\Pages\TovariPage.g.cs
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\Pages\Autorisazia.baml
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\Pages\KorzinaPage.baml
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\Pages\ProfilePage.baml
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\Pages\RedDopPage.baml
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\Pages\Registrazia.baml
+C:\Users\User\Desktop\KPMusical shop\KPMusical shop\obj\Debug\Pages\TovariPage.baml
